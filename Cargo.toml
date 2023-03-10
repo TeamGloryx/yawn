@@ -1,0 +1,10 @@
+[package]
+name = "yawn"
+description = "A functional framework for building UI on top of Yew, inspired by Jetpack Compose (Kotlin)."
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+tupleops = "0"
+yawn-macro = { version = "^0.1.0", path = "./yawn_macro" }

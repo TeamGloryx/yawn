@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/yawn.iml" filepath="$PROJECT_DIR$/yawn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yawn_macro/yawn_macro.iml" filepath="$PROJECT_DIR$/yawn_macro/yawn_macro.iml" />
+    </modules>
+  </component>
+</project>
