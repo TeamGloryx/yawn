@@ -10,3 +10,7 @@ anything.
 ## UI
 
 Yawn UI is planned to use Skia (yes, we're going all-copy) to render sh@tty pixels to some losers' screens
+
+Reference:
+- https://gist.github.com/ad8e/dd150b775ae6aa4d5cf1a092e4713add
+- https://github.com/rust-skia/rust-skia (thanks a lot!)
