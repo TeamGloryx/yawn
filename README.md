@@ -4,7 +4,6 @@ It's inspired by [Jetpack Compose](https://github.com/JetBrains/compose-multipla
 and is currently *just a rewrite* of it in Rust.
 
 ## Runtime
-
 **DISCLAIMER** \
 If it wasn't obvious, this is all rewritten from
 [Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform-core/tree/jb-main/compose/runtime/runtime/src/commonMain/kotlin/androidx/compose/runtime)
@@ -13,7 +12,6 @@ Yawn Runtime is like Jetpack Compose Runtime, a library that lets you manage a t
 anything.
 
 ## UI
-
 Yawn UI is planned to use Skia to render pixels to some screens, not excluding phones' screens.
 
 ## Credits
