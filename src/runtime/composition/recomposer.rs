@@ -1,3 +1,4 @@
+use super::slot_table::{Anchor, SlotTable};
 use super::{Composer, Composition};
 use std::any::Any;
 use std::collections::HashSet;
@@ -5,7 +6,7 @@ use std::error::Error;
 use std::ops::Deref;
 use std::sync::Mutex;
 use tokio::runtime::{Handle, Runtime};
-use crate::runtime::{Anchor, SlotTable};
+use crate::runtime::Slot;
 
 pub enum RecomposerState {
     ShutDown = 0,
@@ -28,7 +29,7 @@ pub struct RecomposerStates {
     pub(self) runner_job: Option<Handle>,
     pub(self) close_cause: Option<Box<dyn Error>>,
     pub(self) known_compositions: Vec<Composition>,
-    pub(self) snapshot_invalidations: Vec<HashSet<dyn Any>>,
+    pub(self) snapshot_invalidations: Vec<HashSet<Slot>>,
 }
 
 pub struct Recomposer {
@@ -62,7 +63,7 @@ impl Recomposer {
     pub(crate) fn recompose_coroutine_context(&self) -> Runtime {
         Runtime::new().unwrap()
     }
-    pub(crate) fn compose_initial<F: Fn(Composer, u64)>(composition: &Composition, content: F) {}
+    pub(crate) fn compose_initial<F: Fn(Composer, u64)>(&mut self, composition: &Composition, content: F) {}
     pub(crate) fn invalidate(&mut self, composition: Composition) {}
     pub(crate) fn invalidate_scope(&mut self, scope: RecomposeScope) {}
 

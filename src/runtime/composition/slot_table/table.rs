@@ -1,4 +1,5 @@
 use std::default::default;
+use super::impls::*;
 
 pub struct Slot {}
 
@@ -24,7 +25,7 @@ pub(crate) struct SlotTable {
 }
 
 impl SlotTable {
-    pub(crate) fn new() -> SlotTable {
+    pub(crate) fn new() -> Self {
         SlotTable {
             groups: default(),
             groups_size: default(),
@@ -34,6 +35,37 @@ impl SlotTable {
             writer: default(),
             version: default(),
             anchors: default(),
+        }
+    }
+
+    pub fn is_empty(&self) -> bool {
+        self.groups_size == 0
+    }
+
+    pub fn read<T, F: Fn(SlotReader) -> T>(block: F) -> T {}
+}
+
+pub(crate) struct SlotReader<'a> {
+    table: &'a SlotTable,
+    groups: &'a Vec<i32>,
+    groups_size: i32,
+    slots: &'a Vec<Option<Slot>>,
+    slots_size: i32,
+    closed: bool,
+    current_group: i32,
+    current_end: i32,
+    parent: i32,
+    empty_count: u32,
+    current_slot: u32,
+    current_slot_end: u32,
+}
+
+impl<'a> SlotReader<'a> {
+    pub(crate) fn new(table: &SlotTable) -> Self {
+        SlotReader {
+            table,
+            groups: &table.groups,
+            groups_size: table.groups_size,
         }
     }
 }
