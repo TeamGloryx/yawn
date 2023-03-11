@@ -23,7 +23,5 @@ to create tools for it, or sometimes **full frameworks** (like this one! 🙂), 
 ---
 - **Jetpack Compose AKA Compose Multiplatform (JetBrains Compose)** ::
   [main (docs, integrations) repo](https://github.com/JetBrains/compose-multiplatform-core) -- [code repo](https://github.com/JetBrains/compose-multiplatform-core/blob/jb-main/compose/)
-- **How to use Skia together with GLFW to render a window
-  ** :: [gist](https://gist.github.com/ad8e/dd150b775ae6aa4d5cf1a092e4713add)
-- ***Safe (!)* Skia bindings for Rust
-  ** :: [repo](https://github.com/rust-skia/rust-skia) -- [docs](https://rust-skia.github.io/doc/skia_safe)
+- **How to use Skia together with GLFW to render a window** :: [gist](https://gist.github.com/ad8e/dd150b775ae6aa4d5cf1a092e4713add)
+- ***Safe (!)* Skia bindings for Rust** :: [repo](https://github.com/rust-skia/rust-skia) -- [docs](https://rust-skia.github.io/doc/skia_safe)
