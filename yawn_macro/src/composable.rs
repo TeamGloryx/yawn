@@ -53,18 +53,18 @@ impl ComposableFn {
     fn make_arg_in_call<const N: usize>(ty: [&str; N], param: &str) -> Expr {
         Expr::Type(ExprType {
             attrs: default(),
-            expr: box Expr::Reference(ExprReference {
+            expr: Box::new(Expr::Reference(ExprReference {
                 raw: default(),
-                expr: box Expr::Path(ExprPath {
+                expr: Box::new(Expr::Path(ExprPath {
                     attrs: default(),
                     qself: default(),
                     path: make_path([param]),
-                }),
+                })),
                 attrs: default(),
                 mutability: default(),
                 and_token: default(),
-            }),
-            ty: box ty_of(ty),
+            })),
+            ty: Box::new(ty_of(ty)),
             colon_token: default(),
         })
     }
@@ -73,8 +73,7 @@ impl ComposableFn {
         Self::prepend_params(
             pu,
             vec![
-                Self::make_arg_in_call(TYPE_COMPOSER, PARAM_COMPOSER),
-                Self::make_arg_in_call(TYPE_u64, PARAM_CHANGED),
+                Self::make_arg_in_call(TYPE_COMPOSER, PARAM_COMPOSER)
             ],
         )
     }
@@ -109,7 +108,6 @@ impl VisitMut for ComposableFn {
             &mut i.sig.inputs,
             vec![
                 FnArg::Typed(cmp_arg_pt(TYPE_COMPOSER, PARAM_COMPOSER)),
-                FnArg::Typed(cmp_arg_pt(TYPE_COMPOSER, PARAM_COMPOSER)),
             ],
         );
 
@@ -124,23 +122,22 @@ pub(crate) fn composable_fn_impl(mut func: ItemFn) -> TokenStream {
 }
 
 fn ty_of<const N: usize>(ty: [&str; N]) -> Type {
-    let lifetime = Lifetime::new("'static", Span::call_site());
     Type::Reference(TypeReference {
-        lifetime: Some(lifetime),
+        lifetime: None,
         mutability: None,
         and_token: default(),
-        elem: box Type::Path(TypePath {
+        elem: Box::new(Type::Path(TypePath {
             qself: None,
             path: make_path::<N>(ty),
-        }),
+        })),
     })
 }
 
 fn cmp_arg_pt<const N: usize>(ty: [&str; N], param: &str) -> PatType {
     PatType {
-        pat: box Pat::Ident(pat_ident(Ident::new(param, Span::call_site()))),
+        pat: Box::new(Pat::Ident(pat_ident(Ident::new(param, Span::call_site())))),
         attrs: Vec::new(),
-        ty: box ty_of(ty),
+        ty: Box::new(ty_of(ty)),
         colon_token: default(),
     }
 }
@@ -198,7 +195,6 @@ pub(crate) fn visit_lambda_mut(input: &mut ExprClosure) {
         &mut input.inputs,
         vec![
             cmp_arg(TYPE_COMPOSER, PARAM_COMPOSER),
-            cmp_arg(TYPE_u64, PARAM_CHANGED),
         ],
     );
 }
@@ -214,7 +210,7 @@ pub(crate) fn composable_impl(input: proc_macro::TokenStream) -> TokenStream {
     if let Ok(Pat::Type(ty)) = parse::<Pat>(input.clone()) {
         return PatType {
             pat: ty.pat,
-            ty: box make_composable_type(*ty.ty.clone()),
+            ty: Box::new(make_composable_type(*ty.ty.clone())),
             attrs: ty.attrs,
             colon_token: ty.colon_token,
         }

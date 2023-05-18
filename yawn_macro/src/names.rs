@@ -6,7 +6,6 @@ use syn::punctuated::{Pair, Punctuated};
 pub(crate) const COMPOSABLE_FN_PREFIX: &str = "__COMPOSABLE_";
 
 pub(crate) const PARAM_COMPOSER: &str = "__composer";
-pub(crate) const PARAM_CHANGED: &str = "__changed";
 
 pub(crate) const TYPE_COMPOSER: [&str; 4] = ["yawn", "runtime", "composer", "Composer"];
 

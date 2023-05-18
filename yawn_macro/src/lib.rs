@@ -1,4 +1,3 @@
-#![feature(box_syntax)]
 #![feature(default_free_fn)]
 #![feature(is_some_and)]
 extern crate proc_macro;

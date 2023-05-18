@@ -1,6 +1,6 @@
 [package]
 name = "yawn"
-description = "A functional framework for building UI on top of Yew, inspired by Jetpack Compose (Kotlin)."
+description = "A functional framework for building UI on top of Yew (not anymore, now Skia.), inspired by Jetpack Compose (Kotlin)."
 version = "0.1.0"
 edition = "2021"
 
@@ -9,3 +9,11 @@ cast = "0"
 tokio = { version = "1", features = ["full"] }
 tupleops = "0"
 yawn-macro = { version = "^0.1.0", path = "./yawn_macro" }
+log = "0"
+downcast-rs = "1"
+lru = "0"
+skia-safe = { version = "0", optional = true }
+
+[features]
+default = ["ui"]
+ui = ["dep:skia-safe"]
